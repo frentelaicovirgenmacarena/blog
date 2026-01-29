@@ -74,10 +74,16 @@ body {
 .logo-principal {
     max-width: 100%;
     height: auto;
-    max-height: 150px;
+    max-height: 120px;
+    /* Tamaño móvil contenido */
     display: block;
     margin: 0 auto;
     filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
+
+.img-header-decor {
+    display: none;
+    /* Oculto en móvil por defecto */
 }
 
 .fecha-liturgica-header {
@@ -126,8 +132,17 @@ body {
 
     .logo-principal {
         margin: 0;
-        /* Alinear a la izquierda en desktop */
-        max-height: 120px;
+        max-height: 250px;
+        /* Logo más grande en desktop */
+    }
+
+    .img-header-decor {
+        display: block;
+        max-height: 250px;
+        width: auto;
+        margin-left: 1rem;
+        border: 2px solid var(--color-oro-viejo);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 
     .lema {
@@ -519,61 +534,79 @@ body {
     }
 }
 
-/* --- BOTONES SOCIALES (DIFUSIÓN) --- */
-.compartir-container {
-    margin-top: 1rem;
-    border-top: 1px dashed var(--color-nazareno);
-    padding-top: 0.5rem;
-    text-align: center;
-}
-
-.titulo-compartir {
-    font-size: 0.8rem;
-    color: var(--color-incienso);
-    margin-bottom: 0.5rem;
-    font-style: italic;
-}
-
-.btn-social {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 50%;
-    margin: 0 5px;
-    color: #fff;
-    font-size: 0.9rem;
+/* --- BOTONES SOCIALES HEADER --- */
+.link-social-header {
+    color: var(--color-oro-viejo);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    transition: transform 0.2s;
-    font-weight: bold;
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    transition: color 0.3s, transform 0.2s;
+    margin: 0 5px;
 }
 
-.btn-social:hover {
-    transform: scale(1.2);
+.link-social-header:hover {
+    color: #fff;
+    transform: scale(1.1);
 }
 
-.bg-wa {
+/* --- BOTONES DE COMPARTIR ESTÁNDAR --- */
+.compartir-container-standard {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--color-nazareno);
+}
+
+.btn-share-std {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    /* Cuadrados redondeados estándar */
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.2s, opacity 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.btn-share-std:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+.btn-share-std svg {
+    pointer-events: none;
+}
+
+/* Colores de Marca */
+.btn-wa {
     background-color: #25D366;
 }
 
-/* WhatsApp */
-.bg-tg {
+.btn-tg {
     background-color: #0088cc;
 }
 
-/* Telegram */
-.bg-x {
+.btn-x {
     background-color: #000000;
 }
 
-/* X */
-.bg-fb {
-    background-color: #3b5998;
+.btn-fb {
+    background-color: #1877F2;
 }
 
-/* Facebook */
-.bg-copy {
-    background-color: var(--color-oro-viejo);
-    color: var(--color-nazareno);
+/* Azul FB más moderno */
+.btn-copy {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-copy:hover {
+    background-color: #e0e0e0;
 }
