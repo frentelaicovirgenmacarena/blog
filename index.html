@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frente Laico Virgen Macarena - La Gloriosa Apostasía</title>
+
+    <!-- Fuentes Gloriosas: Cinzel para títulos (estilo romano/epico) y Crimson Text para cuerpo (estilo antiguo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
+
+    <!-- Estilos Canónicos -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase SDKs (La Santísima Trinidad Tecnológica) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-storage-compat.js"></script>
+
+    <!-- El Ojo que Todo lo Ve (Google Analytics) -->
+    <!-- Reemplaza G-XXXXXXXXXX con tu ID de Medición real -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X75BSFM368"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-X75BSFM368');
+    </script>
+</head>
+
+<body>
+
+    <!-- El Header Solemne -->
+    <header class="header-solemne">
+        <div class="marco-dorado">
+            <div class="header-content">
+                <div class="header-left">
+                    <a href="index.html" style="text-decoration:none;">
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="logo_header_desktop.png">
+                            <img src="logo_header.png" alt="Frente Laico Virgen Macarena" class="logo-principal">
+                        </picture>
+                    </a>
+                </div>
+                <div class="header-right">
+                    <div class="fecha-actual" id="fecha-liturgica-header">Anni Domini MMXIV</div>
+                    <p class="lema">"Ego Te Absolvo in Nomine Rationis"</p>
+                    <div class="redes-sociales-header">
+                        <!-- Iconos decorativos o funcionales -->
+                        <span>🕊️</span> <span>⚖️</span> <span>📜</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenedor Principal de la Fe Racional -->
+    <main class="contenedor-sagrado">
+
+        <!-- Sección de Noticias (El Evangelio según la Cúpula) -->
+        <section id="noticias-container" class="lista-noticias">
+            <!-- Aquí se manifestarán las noticias mediante obra y gracia del JavaScript -->
+            <div class="loading-spinner">Esperando la revelación...</div>
+        </section>
+
+    </main>
+
+    <!-- Acceso a la Sacristía (Admin) -->
+    <footer class="footer-penitente">
+        <button id="btn-sacristia" class="btn-discreto">Acceso a la Sacristía Laica</button>
+        <p>&copy; 2024 Frente Laico Virgen Macarena. Todos los derechos reservados por la Santísima Razón.</p>
+    </footer>
+
+    <!-- Modal de Login (El Confesionario) -->
+    <div id="modal-login" class="modal oculto">
+        <div class="modal-content pergamino">
+            <span class="close">&times;</span>
+            <h2>Identifícate, Hermano</h2>
+            <p>Solo la Cúpula tiene acceso a los misterios de la escritura.</p>
+            <button id="btn-google-login" class="btn-solemne">Entrar con Google</button>
+        </div>
+    </div>
+
+    <!-- MODAL DASHBOARD (LA SACRISTÍA) -->
+    <div id="modal-dashboard" class="modal oculto">
+        <div class="modal-content pergamino-grande">
+            <span class="close-dashboard">&times;</span>
+            <h2 class="titulo-noticia" style="text-align: center;">La Sacristía (Gestión)</h2>
+
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <button id="btn-nueva-epistola" class="btn-solemne">Redactar Nueva Epístola</button>
+            </div>
+
+            <div class="tabla-scroll">
+                <table id="tabla-noticias" style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left; border-bottom: 2px solid var(--color-nazareno);">Título</th>
+                            <th style="text-align: center; border-bottom: 2px solid var(--color-nazareno);">Estado</th>
+                            <th style="text-align: center; border-bottom: 2px solid var(--color-nazareno);">Fecha</th>
+                            <th style="text-align: right; border-bottom: 2px solid var(--color-nazareno);">Penitencias
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo-tabla-noticias">
+                        <!-- Aquí se cargarán los pecados -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EDITOR (EL PÚLPITO) -->
+    <div id="modal-editor" class="modal oculto">
+        <div class="modal-content">
+            <span class="close-editor">&times;</span>
+            <h2 class="titulo-noticia">El Púlpito</h2>
+            <p>Redacta la nueva Bula para la iluminación de las masas.</p>
+
+            <form id="form-noticia">
+                <input type="hidden" id="id-noticia"> <!-- Para saber si estamos editando -->
+
+                <div class="campo-liturgico">
+                    <label>Título de la Epístola</label>
+                    <input type="text" id="titulo-post" required
+                        placeholder="Ej: El Hermano Mayor dimite por herejía...">
+                </div>
+
+                <div class="campo-liturgico">
+                    <label>Imagen Sagrada (Subir o URL)</label>
+                    <input type="file" id="file-post" accept="image/*" style="margin-bottom: 0.5rem;">
+                    <br>
+                    <small>O pega una URL directa si prefieres:</small>
+                    <input type="url" id="img-post" placeholder="https://...">
+                </div>
+
+                <div class="campo-liturgico">
+                    <label>Sermón (Cuerpo de la noticia)</label>
+                    <textarea id="cuerpo-post" required rows="6"
+                        placeholder="Hermanos, hoy nos reunimos para..."></textarea>
+                </div>
+
+                <div class="campo-liturgico">
+                    <label>Fecha de la Profecía (Opcional - Programar)</label>
+                    <input type="datetime-local" id="fecha-post">
+                    <small>Deja vacío para publicar ahora mismo (Ipso Facto).</small>
+                </div>
+
+                <div class="botones-accion">
+                    <button type="button" id="btn-borrador" class="btn-borrador">Guardar en el Limbo (Borrador)</button>
+                    <button type="submit" id="btn-publicar" class="btn-predicar">Predicar Urbi et Orbi</button>
+                </div>
+            </form>
+
+            <div id="mensaje-admin" class="mensaje-divino"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

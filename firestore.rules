@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Regla Sagrada: Todo el mundo puede leer, pero solo el ELEGIDO puede escribir.
+    match /noticias/{noticiaId} {
+      allow read: if true; // La palabra es libre para todos
+      
+      allow write: if request.auth != null && 
+                   request.auth.token.email == 'frentelaicovirgenmacarena@gmail.com';
+    }
+  }
+}
